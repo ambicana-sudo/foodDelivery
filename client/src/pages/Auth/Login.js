@@ -2,78 +2,88 @@ import FormText from "../../component/formText";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
 import Image from '../../images/order.svg'
-import {Link} from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { message } from "antd";
+import 'antd/dist/antd.min.css';
+import ShowHidePassword from "../../component/showHidePassword";
+import { setCredentials } from "../../reducerSlice/userSlice";
+import {useDispatch, useSelector} from 'react-redux'
 
-const Login = ()=> {
-  const logParticipants = async(values)=>{
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      phoneNumber: values.email,
-      password: values.password
-    })
-  };
-  const response = await fetch('http://localhost:4000/login', requestOptions);
-  const data = await response.json();
+const Login = () => {
+	const navigate = useNavigate()
+	const dispatch = useDispatch()
+	const {name} = useSelector(state=> state.users)
 
-    if(data){
-        console.log(data)
-        alert("you re logged in")
-    }else{
-        console.log("invalid details")
-    }
-  }
+	const logParticipants = async (values) => {
+		const requestOptions = {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({
+				email: values.email,
+				password: values.password
+			})
+		};
+		const response = await fetch('http://localhost:4000/login', requestOptions);
+		const data = await response.json();
 
-  const LoginSchema = Yup.object().shape({
-      password: Yup.string()
-        .required('Required'),
-      email: Yup.string().email('Invalid email').required('Required'),
-      lotteryNo: Yup.number()
-        .required('Required'),
-  });
+		if (data) {
+			// console.log(data)
+			message.success(data.msg) // to display the success msg after submit
 
-  return (
-      <div className="section_bg">
-        <div className="form_section login">
-            <div className='info_text'>
-                <FormText image={Image}/>
-            </div>
+			dispatch(setCredentials(data.detail)) // to access the user data
 
-            <div className='form_content'>
-                <h2 className='pg_title'>Login</h2>
+			navigate('/home')
+		} else {
+			message.error("invalid details")
+		}
+	}
 
-                <div className="register">
-                    <Formik
-                        initialValues={{
-                          phoneNumber: '',
-                          password: '',
-                        }}
-                        validationSchema={LoginSchema}
-                        onSubmit={values => {
-                          logParticipants(values)
-                            // same shape as initial values
-                            // console.log(values);
-                        }}
-                    >
-                    {({ errors, touched, values, handleChange, handleBlur }) => (
-                      <Form>
-                        <Field name="phoneNumber" placeholder="Enter Phone No." value={values.phoneNumber} onChange={handleChange} onBlur={handleBlur} />
-                        {errors.phoneNumber && touched.phoneNumber ? (<div className="error">{errors.phoneNumber}</div>) : null}
+	const LoginSchema = Yup.object().shape({
+		password: Yup.string().required('Required'),
+		email: Yup.string().email('Invalid email').required('Required'),
+	});
 
-                        <Field name="password" placeholder="Enter Password" value={values.password} onChange={handleChange} onBlur={handleBlur} />
-                        {errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
+	return (
+		<div className="section_bg">
+			<div className="form_section login">
+				<div className='info_text'>
+					<FormText image={Image} />
+				</div>
 
-                        <button type="submit">Login</button>
-                      </Form>
-                    )}
-                    </Formik>
-                    <p style={{color: '#fff', marginTop: '10px'}}>Dont have an account? <Link to="/register">Signup</Link> here</p>
-                </div>
-            </div>
-        </div>
-      </div>
-  )
+				<div className='form_content'>
+					<h2 className='pg_title'>Login</h2>
+
+					<div className="register">
+						<Formik
+							initialValues={{
+								email: '',
+								password: '',
+							}}
+							validationSchema={LoginSchema}
+							onSubmit={values => {
+								logParticipants(values)
+								// same shape as initial values
+								// console.log(values);
+							}}
+						>
+							{({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (
+								<Form onSubmit={handleSubmit}>
+									<Field name="email" placeholder="Enter Email" value={values.email} onChange={handleChange} onBlur={handleBlur} />
+									{errors.email && touched.email ? (<div className="error">{errors.email}</div>) : null}
+
+									<Field name="password" placeholder="Enter Password" value={values.password} component={ShowHidePassword} onChange={handleChange} onBlur={handleBlur} />
+									{errors.password && touched.password ? <div className="error">{errors.password}</div> : null}
+
+									<button type="submit">Login</button>
+								</Form>
+							)}
+						</Formik>
+						<p style={{ color: '#fff', marginTop: '10px' }}>Dont have an account? <Link to="/register">Signup</Link> here</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	)
 }
 
 export default Login
