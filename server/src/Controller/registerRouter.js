@@ -12,7 +12,7 @@ router.post("/", async (req, res) => {
             req.body.password = hash
         }).then((data)=>{
             const appUser = User.create(req.body)
-            console.log(req.body)
+            // console.log(req.body)
         
             res.json({
                 message: 'User Registered',
@@ -28,9 +28,5 @@ router.post("/", async (req, res) => {
     }
 });
 
-// view users
-router.get("/", async (req, res) => {
-
-});
 
 module.exports = router;

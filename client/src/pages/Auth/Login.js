@@ -23,16 +23,16 @@ const Login = () => {
 				password: values.password
 			})
 		};
-		const response = await fetch('http://localhost:4000/login', requestOptions);
+		const response = await fetch('http://localhost:5000/login', requestOptions);
 		const data = await response.json();
 
 		if (data) {
-			// console.log(data)
+			console.log(data)
 			message.success(data.msg) // to display the success msg after submit
 
 			dispatch(setCredentials(data.detail)) // to access the user data
 
-			navigate('/home')
+			navigate('/restaurant-list')
 		} else {
 			message.error("invalid details")
 		}

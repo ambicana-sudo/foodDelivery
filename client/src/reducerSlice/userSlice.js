@@ -13,6 +13,7 @@ const userSlice = createSlice({
         setCredentials: (state, actions)=>{
             state.name = actions.payload.name
             state.phoneNumber = actions.payload.phoneNumber
+            console.log(actions.payload)
         }
     }
 })

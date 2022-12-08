@@ -23,7 +23,7 @@ const Register = () => {
 				confirmPassword: values.confirmPassword
 			})
 		};
-		const response = await fetch('http://localhost:4000/register', requestOptions);
+		const response = await fetch('http://localhost:5000/register', requestOptions);
 		const data = await response.json();
 
 		if (data) {
