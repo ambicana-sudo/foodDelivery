@@ -7,9 +7,9 @@ import Rating from '@mui/material/Rating';
 const RestaurantList = (props) => {
 	return (
 		<div className='card_list'>
-			{props.restaurants.length > 0 ? props.restaurants.map((item) => {
+			{props.restaurants.length > 0 ? props.restaurants.map((item,id) => {
 				return (
-					<div className='card' key={item.name}>
+					<div className='card' key={id}>
 						<div className='card_img'>
 							<img src={CardImage} alt="" />
 							<h3 className='card_name'>{item.name}</h3>

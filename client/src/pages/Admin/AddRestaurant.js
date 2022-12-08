@@ -1,15 +1,16 @@
 import React from 'react';
 import Header from '../../component/header/header';
-import { useSelector } from 'react-redux'
+import { useSelector,useDispatch } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-// import { useNavigate, Link } from "react-router-dom";
 import { message } from 'antd';
 import 'antd/dist/antd.min.css';
 import Userimage from '../../images/dummy.svg'
+import { setRestaurantList } from '../../reducerSlice/restaurantSlice';
 
 const AddRestaurant = () => {
 	const { name } = useSelector(state => state.users)
+	const dispatch = useDispatch()
 
 	// const navigate = useNavigate()
 	const saveRestro = async (values) => {
@@ -23,7 +24,7 @@ const AddRestaurant = () => {
 				category: values.category,
 			})
 		};
-		const response = await fetch('http://localhost:4000/restaurant', requestOptions);
+		const response = await fetch('http://localhost:5000/restaurant', requestOptions);
 		const data = await response.json();
 
 		if (data) {
@@ -32,6 +33,7 @@ const AddRestaurant = () => {
 		}else{
 			message.success(data.errDetail)
 		}
+		dispatch(setRestaurantList(values))
 	}
 
 	const SignupSchema = Yup.object().shape({
