@@ -4,6 +4,7 @@ export const initialState = {
     name: '',
     phoneNumber: '',
     token: '',
+    address: ''
 }
 
 const userSlice = createSlice({
@@ -12,8 +13,9 @@ const userSlice = createSlice({
     reducers: {
         setCredentials: (state, actions)=>{
             state.name = actions.payload.name
-            state.phoneNumber = actions.payload.phoneNumber
-            console.log(actions.payload)
+            state.phoneNumber = actions.payload.phoneNumber,
+            state.role = actions.payload.role,
+            state.address = actions.payload.address
         }
     }
 })
