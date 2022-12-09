@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useSelector } from 'react-redux'
 import Userimage from '../../images/dummy.svg'
 import { Formik, Form, Field } from 'formik';
@@ -9,18 +9,25 @@ import 'antd/dist/antd.min.css';
 const AddFood = () => {
 	const { name } = useSelector(state => state.users)
 	const { restaurantList } = useSelector(state => state.restaurant)
+	const [foodImg, setImage] = useState()
+
+	const saveImage = (e)=>{
+		setImage(e.target.files[0])
+	}
 
 	const saveFood = async (values) => {
+		const formData = new FormData();
+		formData.append('file', foodImg)
+		formData.append('foodName', values.foodName)
+		formData.append('foodCategory', values.foodCategory)
+		formData.append('restaurantName', values.restaurantName)
+		formData.append('foodType', values.foodType)
+		formData.append('foodPrice', values.foodPrice)
+
 		const requestOptions = {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				foodName: values.foodName,
-				foodCategory: values.foodCategory,
-				restaurantName: values.restaurantName,
-				foodType: values.foodType,
-				foodPrice: values.foodPrice
-			})
+			body: formData,
+			dataType: 'jsonP',
 		};
 		const response = await fetch('http://localhost:5000/food', requestOptions);
 		const data = await response.json();
@@ -63,8 +70,9 @@ const AddFood = () => {
 										foodName: '',
 										foodCategory: '',
 										restaurantName: '',
+										foodPrice: '',
 										foodType: '',
-										foodPrice: ''
+										foodImage:'',
 									}}
 									validationSchema={SignupSchema}
 									onSubmit={values => {
@@ -106,6 +114,8 @@ const AddFood = () => {
 												<option label="Non Veg">Non Veg</option>
 											</select>
 											{errors.foodCategory && touched.foodCategory ? <div className="error">{errors.foodCategory}</div> : null}
+
+											<input type="file" onChange={(e)=> saveImage(e)}></input>
 
 											<button type="submit">Submit</button>
 										</Form>
