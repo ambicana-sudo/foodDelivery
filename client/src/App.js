@@ -6,6 +6,7 @@ import ErrorPage from "./pages/ErrorPage/ErrorPage";
 import AddRestaurant from "./pages/Admin/AddRestaurant";
 import Restaurant from "./pages/restaurant/restaurant";
 import AddFood from "./pages/Admin/AddFoodForm";
+import OrderDisplay from "./pages/Rider/ordersDisplay";
 
 const App = () => {
   return (
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/add-restaurant" element={<AddRestaurant />} />
         <Route path="/add-food" element={<AddFood />} />
         <Route path="/restaurant-list" element={<Restaurant />} />
+        <Route path="/delivery-request" element={<OrderDisplay />} />
         <Route path="*" element={<ErrorPage/>}></Route>
       </Routes>
     </div>

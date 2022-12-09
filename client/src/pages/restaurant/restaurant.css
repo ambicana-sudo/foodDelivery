@@ -1,13 +1,20 @@
+#admin .main_content{
+    background: rgba(255,255,255,.3);
+    padding: 30px;
+    max-width: 500px;
+    margin: 0 auto;
+    box-shadow: 2px 3px 8px rgb(0 0 0 / 20%);
+}
+
 .restro_section{
     padding-top: 50px;
 }
 
 #additem_section{
 position: relative;
-padding-top: 72px
 }
 
-#additem_section::before {
+/* #additem_section::before {
 background: url(../../images/food.png) no-repeat;
 background-size: 472px;
 top: 0;
@@ -18,7 +25,7 @@ filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
 position: absolute;
 content: '';
 width: 404px;
-}
+} */
 
 .card_list {
     display: flex;
@@ -81,11 +88,16 @@ width: 404px;
     line-height: 20px;
 }
 
+.card a{
+    color: #fff;
+}
+
 .card_info{
     padding: 10px;
     font-size: 16px;
     transition: all .3s ease-in-out;
     background: #f1f1f1;
+    position: relative;
 }
 
 .card_info p{
@@ -97,7 +109,26 @@ width: 404px;
     color: #fff;
 }
 
-.card i{
+.card_info button {
+    height: 30px;
+    width: 30px;
+    padding: 0;
+    border-radius: 50%;
+    position: absolute;
+    bottom: 15px;
+    right: 10px;
+    box-shadow: 0 0 11px rgb(0 0 0 / 50%);
+    opacity: 0;
+    visibility: hidden;
+    transition: all .3s ease;
+}
+
+.card_info:hover button{
+    opacity: 1;
+    visibility: visible;
+}
+
+.card i, .restro_info i{
     color: #FF8465;
     margin-right: 10px;
     font-weight: 700;
@@ -105,4 +136,35 @@ width: 404px;
 
 .rating .css-ryrseu-MuiRating-root{
     font-size: 1.2rem;
+}
+
+.restro_detail {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    margin-top: 100px;
+    color: #fff;
+    background: #000;
+}
+
+.restro_img {
+    max-width: 300px;
+}
+
+.restro_img img {
+    width: 100%;
+}
+
+.restro_info{
+    padding-left: 15px;
+}
+
+.restro_info h1{
+    color: #fff;
+    line-height: 25px;
+}
+
+.restro_info p{
+    font-size: 16px;
+    margin-bottom: 5px;
 }
