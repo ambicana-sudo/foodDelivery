@@ -32,7 +32,7 @@ const Login = () => {
 
 			dispatch(setCredentials(data.detail)) // to access the user data
 
-			navigate('/restaurant-list')
+			navigate('/')
 		} else {
 			message.error("invalid details")
 		}
