@@ -94,7 +94,8 @@ const AddFood = () => {
 												<option label="Momo">Momo</option>
 												<option label="Pizza">Pizza</option>
 												<option label="Dessert">Dessert</option>
-												<option label="Snaks">Snaks</option>
+												<option label="Pasta">Snaks</option>
+												<option label="Chwomein">Chowmein</option>
 											</select>
 											{errors.foodCategory && touched.foodCategory ? <div className="error">{errors.foodCategory}</div> : null}
 

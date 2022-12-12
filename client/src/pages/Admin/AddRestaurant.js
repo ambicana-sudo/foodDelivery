@@ -1,5 +1,4 @@
-import React from 'react';
-import Header from '../../component/header/header';
+import React, {useState} from 'react';
 import { useSelector,useDispatch } from 'react-redux'
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
@@ -11,18 +10,23 @@ import { setRestaurantList } from '../../reducerSlice/restaurantSlice';
 const AddRestaurant = () => {
 	const { name } = useSelector(state => state.users)
 	const dispatch = useDispatch()
+	const [restroImage, setRestroImage] = useState()
 
+	const saveImage = (e)=>{
+		setRestroImage(e.target.files[0])
+	}
 	// const navigate = useNavigate()
 	const saveRestro = async (values) => {
+		const formData = new FormData()
+		formData.append('file', restroImage)
+		formData.append('name', values.name)
+		formData.append('location', values.location)
+		formData.append('rating', values.rating)
+		formData.append('category', values.category)
 		const requestOptions = {
 			method: 'POST',
-			headers: { 'Content-Type': 'application/json' },
-			body: JSON.stringify({
-				name: values.name,
-				location: values.location,
-				rating: values.rating,
-				category: values.category,
-			})
+			body: formData,
+			dataType: 'jsonP',
 		};
 		const response = await fetch('http://localhost:5000/restaurant', requestOptions);
 		const data = await response.json();
@@ -30,10 +34,10 @@ const AddRestaurant = () => {
 		if (data) {
 			console.log(data)
 			message.success(data.message)
+			dispatch(setRestaurantList(values))
 		}else{
 			message.success(data.errDetail)
 		}
-		dispatch(setRestaurantList(values))
 	}
 
 	const SignupSchema = Yup.object().shape({
@@ -69,6 +73,7 @@ const AddRestaurant = () => {
 										location: '',
 										rating: '',
 										category: '',
+										restroImage: '',
 									}}
 									validationSchema={SignupSchema}
 									onSubmit={values => {
@@ -97,6 +102,8 @@ const AddRestaurant = () => {
 											</select>
 											{errors.category && touched.category ? <div className="error">{errors.category}</div> : null}
 
+											<input type="file" onChange={(e)=> saveImage(e)}/>
+											
 											<button type="submit">Submit</button>
 										</Form>
 									)}
