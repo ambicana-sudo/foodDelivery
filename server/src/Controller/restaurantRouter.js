@@ -16,8 +16,9 @@ const upload = multer({ storage: storage }).single('file')
 // post request for register the user
 router.post("/", upload, async (req, res) => {
     try{
-        console.log(req.file)
+        console.log('filer', req.file)
         req.body.restroImage = req.file.filename
+
         const selectedRestro = Restaurant.create(req.body)
         console.log(req.body)
         res.json({
@@ -25,14 +26,14 @@ router.post("/", upload, async (req, res) => {
             restroDetail: selectedRestro
         })
     }catch(error){
+        console.log(error)
         res.json({
-            errorMsg: 'The restaurant not found',
-            errDetail: error
+            errorMsg: 'failed to register restro'
         })
     }
 });
 
-// view users
+// get restaurasnt list
 router.get("/", async (req, res) => {
     try{
         const restaurantList = await Restaurant.find()
@@ -43,5 +44,32 @@ router.get("/", async (req, res) => {
         console.log(error)
     }
 });
+
+// update restaurasnt data
+router.put("/", async(req, res)=>{
+    try{
+        // console.log(req.file)
+        // req.body.restroImage = req.file.filename || ''
+
+        const updateRestroData = await Restaurant.updateOne({_id: req.body._id}, {$set: req.body})
+        res.send({
+            message: 'updated the data',
+            updatedItem: updateRestroData
+        })
+    }catch(error){
+        console.log(error)
+    }
+})
+
+// delete restaurant
+router.delete("/:id", async(req, res)=>{
+    try{
+        console.log('id',req.params.id)
+        const deleteRestro = await Restaurant.deleteOne({_id: req.params.id})
+        res.send(deleteRestro)
+    }catch(error){
+        console.log(error)
+    }
+})
 
 module.exports = router;

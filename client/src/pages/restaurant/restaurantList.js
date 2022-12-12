@@ -11,7 +11,7 @@ const RestaurantList = (props) => {
 				return (
 					<div className='card' key={id}>
 						<div className='card_img'>
-							<img src={CardImage} alt="" />
+							<img src={require('../../uploads/' + item.restroImage)} alt="" />
 							<h3 className='card_name'>{item.name}</h3>
 						</div>
 						<div className='card_info'>

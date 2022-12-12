@@ -5,6 +5,7 @@ import OrderDisplay from "../Rider/ordersDisplay"
 import AddFood from "../Admin/AddFoodForm"
 import AddRestaurant from "../Admin/AddRestaurant"
 import Admin from "../Admin/admin";
+import RestaurantData from "../Admin/restautrantData";
 
 const AuthorizedUsers = (props)=>{
    if(props.authorizeRole === 'user'){
@@ -36,7 +37,7 @@ const AdminRoute = ()=>{
     return(                                                                                                 
         <Routes>
             <Route path="/" element={<Admin />} />
-            <Route path="/add-restaurant" element={<AddRestaurant />} />
+            <Route path="/add-restaurant" element={<RestaurantData />} />
             <Route path="/add-food" element={<AddFood />} />
         </Routes>
     )
