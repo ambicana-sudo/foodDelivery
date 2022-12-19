@@ -6,7 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faTrash } from '@fortawesome/free-solid-svg-icons'
 
 const RestaurantData = ()=>{
-    const [restaurant, setResataurant] = useState()
+    const [restaurant, setResataurant] = useState([])
     const [isEditModalOpen, setIsEditModalOpen] = useState(false);
 	const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [selectedItem,setSelectedItem] = useState({})
@@ -86,7 +86,7 @@ const RestaurantData = ()=>{
                                 </tr>
                             </thead>
                             <tbody>
-                                {restaurant?.length > 0 ? restaurant.map((restro, id) => {
+                                {restaurant.length > 0 ? restaurant.map((restro, id) => {
                                     return (
                                         <tr key={restro._id}>
                                             <td>{id + 1}</td>

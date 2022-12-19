@@ -149,6 +149,8 @@ width: 404px;
 
 .restro_img {
     max-width: 300px;
+    max-height: 230px;
+    overflow: hidden;
 }
 
 .restro_img img {
@@ -167,4 +169,17 @@ width: 404px;
 .restro_info p{
     font-size: 16px;
     margin-bottom: 5px;
+}
+
+.restroFood {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.category {
+    flex-grow: 1;
+}
+
+.food_cart {
+    flex-grow: 1;
 }

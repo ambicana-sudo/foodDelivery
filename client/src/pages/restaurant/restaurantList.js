@@ -3,11 +3,12 @@ import CardImage from '../../images/card_img.jpg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBowlRice, faLocationDot, faFontAwesome } from '@fortawesome/free-solid-svg-icons'
 import Rating from '@mui/material/Rating';
+import { Link } from 'react-router-dom';
 
 const RestaurantList = (props) => {
 	return (
 		<div className='card_list'>
-			{props.restaurants.length > 0 ? props.restaurants.map((item,id) => {
+			{props.restaurants?.length > 0 ? props.restaurants.map((item,id) => {
 				return (
 					<div className='card' key={id}>
 						<div className='card_img'>
@@ -21,6 +22,7 @@ const RestaurantList = (props) => {
 								<i><FontAwesomeIcon icon={faFontAwesome} /></i>
 								<Rating name="size-small read-only" value={item.rating} defaultValue={2} precision={0.5} readOnly />
 							</p>
+							<Link to={`restaurant/${item._id}`}><i><FontAwesomeIcon icon={faBowlRice} /></i></Link>
 						</div>
 					</div>
 				)
