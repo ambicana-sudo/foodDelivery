@@ -30,4 +30,40 @@ router.post('/', upload, async(req, res)=>{
     }
 })
 
+router.get('/', async(req, res)=>{
+    try{
+        const foodList = await Food.find()
+        res.json({
+            foodList: foodList
+        })
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.put('/', async(req, res)=>{
+    try{
+        // req.body.foodImage = req.file?.filename || ''
+        const updateFoodData = await Food.updateOne({_id: req.body._id}, {$set: req.body})
+        res.json({
+            message: "updated data",
+            updatedItem: updateFoodData
+        })
+    }catch(error){
+        console.log(error)
+    }
+})
+
+router.delete('/:id', async(req, res)=>{
+    try{
+        const deleteFoodData = await Food.deleteOne({_id: req.params.id})
+        res.json({
+            message: "food deleted",
+            removededItem: deleteFoodData
+        })
+    }catch(error){
+        console.log(error)
+    }
+})
+
 module.exports = router;

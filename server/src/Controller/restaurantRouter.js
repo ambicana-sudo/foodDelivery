@@ -72,4 +72,21 @@ router.delete("/:id", async(req, res)=>{
     }
 })
 
+// delete restaurant
+router.get("/:id", async(req, res)=>{
+    try{
+        // console.log('id',req.params.id)
+        const restroDetail = await Restaurant.findById({_id: req.params.id})
+        if(restroDetail){
+            res.send(restroDetail)
+        }else{
+            res.json({
+                msg: 'Restro details not found'
+            })
+        }
+    }catch(error){
+        console.log(error)
+    }
+})
+
 module.exports = router;
