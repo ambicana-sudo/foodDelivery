@@ -4,9 +4,8 @@
 
 * React JS
 * React Router
-* Redux
+* Redux/Redux Persist
 * UI Libraries - Material Design and Ant Design
-* Ant Design & Material UI
 * Formik & Yup for Form Validation in React
 * Mongo DB, Express
 * Node JS
