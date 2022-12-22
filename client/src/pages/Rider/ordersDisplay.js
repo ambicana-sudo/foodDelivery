@@ -25,6 +25,7 @@ const OrderDisplay = ()=>{
         fetchUsers()
     }, [])
 
+
     return(
         
         <>
@@ -32,7 +33,7 @@ const OrderDisplay = ()=>{
                 <div className='container'>
                     <div className='delivery_request'>
                         <h2 className='pg_title'>Delivery Requests</h2>
-                         <TodoDeliveryList users={filterUsers}/>
+                         <TodoDeliveryList users={filterUsers} />
                     </div>
                 </div>
             </div>

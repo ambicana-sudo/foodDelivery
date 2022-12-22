@@ -95,9 +95,9 @@ console.log(foodList)
                                 {foodList.length > 0 ? foodList.map((food,id)=>{
                                     const{foodName, restaurantName, foodPrice, foodImage, foodCategory, foodType, _id} = food
                                     return(
-                                        <tr>
+                                        <tr key={id}>
                                             <td>{id + 1}</td>
-                                            <td><img src={require('../../uploads/' + foodImage)} width='50px'/></td>
+                                            <td><img src={require('../../uploads/' + foodImage)} width='50px' alt=""/></td>
                                             <td>{foodName}</td>
                                             <td>{restaurantName}</td>
                                             <td>{_id}</td>

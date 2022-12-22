@@ -545,6 +545,7 @@ thead {
 tbody{
   background: rgb(207 69 14 / 60%);
   color: #fff;
+  font-size: 14px;
 }
 
 table button {

@@ -42,7 +42,6 @@ const App = () => {
         <AuthorizedUsers authorizeRole={authorizeRole}/>
       </>
       }
-      
     </div>
   )
 };

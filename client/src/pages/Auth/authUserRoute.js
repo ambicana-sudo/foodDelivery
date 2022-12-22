@@ -6,6 +6,8 @@ import AddFood from "../Admin/AddFoodForm"
 import AddRestaurant from "../Admin/AddRestaurant"
 import Admin from "../Admin/admin";
 import RestaurantData from "../Admin/restautrantData";
+import FoodData from "../Admin/foodData";
+import RestaurantDetail from "../restaurant/restaurantDetail";
 
 const AuthorizedUsers = (props)=>{
    if(props.authorizeRole === 'user'){
@@ -21,6 +23,7 @@ const UserRoute = ()=>{
     return(
         <Routes>
             <Route path="/" element={<Restaurant />} />
+            <Route path="restaurant/:id" element={<RestaurantDetail />} />
         </Routes>
     )
 }
@@ -38,7 +41,7 @@ const AdminRoute = ()=>{
         <Routes>
             <Route path="/" element={<Admin />} />
             <Route path="/add-restaurant" element={<RestaurantData />} />
-            <Route path="/add-food" element={<AddFood />} />
+            <Route path="/add-food" element={<FoodData />} />
         </Routes>
     )
 }
