@@ -20,6 +20,15 @@ const Restaurant = ()=>{
 		fetchList()
   	},[])
 
+	const handleSearch = async(searchKey)=>{
+		const response = await fetch(`http://localhost:5000/restaurant?name=${searchKey}` )
+		const result = await response.json();
+		if(result){
+			console.log(result)
+			setRestaurants(result.restaurantList)
+		}
+	}
+
 	return(
 
 		<>
@@ -32,16 +41,16 @@ const Restaurant = ()=>{
 					</div>
 
 					<div className='search transparent_bg'>
-						<input type="search" placeholder="Enter restaurant name or cuisine"/>
+						<input type="search" placeholder="Enter restaurant name or cuisine" onChange={(e)=> handleSearch(e.target.value)}/>
 						<button><i><FontAwesomeIcon icon={faSearch}/></i></button>
 					</div>
 				</div>
 			</div>
 			<div className='restro_section'>
-					<div className='container'>
-						<h2 className='section_title'>All Restaurants</h2>
-						<RestaurantList restaurants={restaurants}/>
-					</div>
+				<div className='container'>
+					<h2 className='section_title'>All Restaurants</h2>
+					<RestaurantList restaurants={restaurants}/>
+				</div>
 			</div>
 		</>
 	)

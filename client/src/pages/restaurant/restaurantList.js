@@ -26,7 +26,7 @@ const RestaurantList = (props) => {
 						</div>
 					</div>
 				)
-			}) : 'loading'}
+			}) : <h3>Restaurant not found</h3>}
 		</div>
 	)
 }
