@@ -36,10 +36,20 @@ router.post("/", upload, async (req, res) => {
 // get restaurasnt list
 router.get("/", async (req, res) => {
     try{
-        const restaurantList = await Restaurant.find()
+        console.log('query', req.query)
+        var regexp = new RegExp("^"+ req.query.name);
+        let restaurantList;
+        
+        if(req.query.name){
+            restaurantList = await Restaurant.find({name: regexp})
+        }else{
+            restaurantList = await Restaurant.find()
+        }
+
         res.json({
             restaurantList : restaurantList
         })
+        
     }catch(error){
         console.log(error)
     }
