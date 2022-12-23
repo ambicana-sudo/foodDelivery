@@ -79,6 +79,7 @@ const RestaurantData = ()=>{
                                 <tr>
                                     <th>S.N</th>
                                     <th>Name</th>
+                                    <th>Image</th>
                                     <th>Location</th>
                                     <th>Category</th>
                                     <th>Rating</th>
@@ -91,6 +92,9 @@ const RestaurantData = ()=>{
                                         <tr key={restro._id}>
                                             <td>{id + 1}</td>
                                             <td>{restro.name}</td>
+                                            <td>
+                                                <img src={require('../../uploads/' + restro.restroImage)} width="50px" alt=""/>
+                                            </td>
                                             <td>{restro.location}</td>
                                             <td>{restro.category}</td>
                                             <td>{restro.rating}</td>
