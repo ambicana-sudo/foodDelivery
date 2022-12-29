@@ -1,1 +1,1 @@
-# Getting Started with Online Food Delivey App
+project is on master branch
