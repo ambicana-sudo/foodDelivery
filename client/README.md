@@ -19,14 +19,14 @@
   - [x] Registration
   - [x] MultiUser Login(user, admin, rider)
 - [ ] Services
-  - [ ] Search Product by Food/Restaurant
+  - [x] Search Food/Restaurant
   - [ ] Pagination
   - [x] Add, Update, Delete Restaurant
   - [x] Add, Update, Delete Foods
   - [ ] Filter Foods by category
   - [x] Add and Remove foods from Cart
   - [x] Display Restaurant Menu
-  - [] Display order items to rider panel
+  - [ ] Display order items to rider panel
   
 ## Installation
 To run this project locally, download the code, navigate to that folder and then run the following command
