@@ -12,7 +12,7 @@ const FoodData = ()=>{
     const [selectedItem,setSelectedItem] = useState({})
 console.log(foodList)
     const fetchFood = async()=>{
-        const response = await fetch('http://localhost:5000/food')
+        const response = await fetch('http://localhost:3000/food')
         const data = await response.json()
 
         if(data){
@@ -29,7 +29,7 @@ console.log(foodList)
     // delete Food data
 	const deleteFood = async (id) => {
 		// console.log(id)
-		const response = await fetch(`http://localhost:4000/food/${id}`, {
+		const response = await fetch(`http://localhost:3000/food/${id}`, {
 			method: 'Delete'
 		})
 		const data = await response.json();

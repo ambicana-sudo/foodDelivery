@@ -23,7 +23,7 @@ const Register = () => {
 				confirmPassword: values.confirmPassword
 			})
 		};
-		const response = await fetch('http://localhost:5000/register', requestOptions);
+		const response = await fetch('http://localhost:3000/register', requestOptions);
 		const data = await response.json();
 
 		if (data) {
@@ -75,8 +75,6 @@ const Register = () => {
 							validationSchema={SignupSchema}
 							onSubmit={values => {
 								saveParticipants(values)
-								// same shape as initial values
-								// console.log('clicked');
 							}}
 						>
 							{({ errors, touched, values, handleChange, handleBlur, handleSubmit }) => (

@@ -36,7 +36,6 @@ router.post("/", upload, async (req, res) => {
 // get restaurasnt list
 router.get("/", async (req, res) => {
     try{
-        console.log('query', req.query)
         var regexp = new RegExp("^"+ req.query.name);
         let restaurantList;
         
@@ -45,9 +44,9 @@ router.get("/", async (req, res) => {
         }else{
             restaurantList = await Restaurant.find()
         }
-
+       
         res.json({
-            restaurantList : restaurantList
+            restaurantData : restaurantList
         })
         
     }catch(error){

@@ -31,6 +31,11 @@ h4 {
   margin: 0 auto;
 }
 
+a{
+  text-decoration: none;
+  color: #062b50 !important;
+}
+
 .full_height {
   height: 100vh;
   display: flex;
@@ -411,8 +416,7 @@ input[type="search"] {
   flex-flow: column;
   justify-content: center;
   position: relative;
-  padding-top: 140px;
-  padding-bottom: 100px;
+  padding: 140px 30px 100px 30px;
 }
 
 .top_section::before {

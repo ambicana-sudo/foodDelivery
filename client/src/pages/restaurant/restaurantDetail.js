@@ -5,18 +5,18 @@ import CardImage from '../../images/card_img.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBowlRice, faLocationDot, faFontAwesome } from '@fortawesome/free-solid-svg-icons'
 import Rating from '@mui/material/Rating';
-import defaultImg from '../../images/meal.png'
+import FoodList from './foodList';
 
 const RestaurantDetail = ()=>{
     const [restaurants, setRestaurants] = useState([]);
     const [foods, setFoods] = useState([])
-    // const [filterFoods, setFilterFoods] = useState([])
+    // const [searchKey, setSearchKey] = useState('')
+
     const params = useParams();
     const {id} = params;
-    console.log(foods)
 
     const fetchDetails = async()=>{
-        const response = await fetch(`http://localhost:5000/restaurant/${id}`);
+        const response = await fetch(`http://localhost:3000/restaurant/${id}`);
         const data = await response.json();
         if(data){
             setRestaurants(data)
@@ -26,7 +26,7 @@ const RestaurantDetail = ()=>{
         }
     }
     const fetchFood = async()=>{
-        const response = await fetch(`http://localhost:5000/food`);
+        const response = await fetch(`http://localhost:3000/food`);
         const data = await response.json();
         if(data){
             setFoods(data.foodList)
@@ -35,17 +35,25 @@ const RestaurantDetail = ()=>{
         }
     }
 
-    const filterFood = foods.filter((food)=>{
-        if(restaurants.name === food.restaurantName){
-            return food
-        }
-    })
-    // console.log(filterFood)
-
     useEffect(()=>{
         fetchDetails()
         fetchFood()
     }, [id])
+
+    const searchFood = (key)=>{
+        if(key === ''){
+            fetchFood()
+        }else{
+            const searchList = foods.filter((food)=>{
+                return food.foodName.toLowerCase().includes(key.toLowerCase())
+            })
+            setFoods(searchList)
+        }
+    }
+
+    const filterfoods = foods.filter((food)=>{
+        return restaurants.name === food.restaurantName
+    })
 
     return(
         <>
@@ -55,7 +63,7 @@ const RestaurantDetail = ()=>{
                 </div>
 
                 <div className='restro_info'>
-                    <h3>{restaurants.name}</h3>
+                    <h1>{restaurants.name}</h1>
                     <p><i><FontAwesomeIcon icon={faLocationDot} /></i>{restaurants.location}</p>
                     <p><i><FontAwesomeIcon icon={faBowlRice} /></i>{restaurants.category}</p>
                     <p>
@@ -71,32 +79,20 @@ const RestaurantDetail = ()=>{
                         <div className='category'>
                             <h4>Categories</h4>
                         </div>
+
                         <div className='food_list'>
                             <h4>Menu</h4>
-                            <div className=''>
-                                {filterFood.length > 0 ? (filterFood.map((food)=>{
-                                    const {foodName, restaurantName, foodPrice, foodType, foodImage} = food
-                                    return(
-                                        <div className='food_items'>
-                                            <div className="food_img">
-                                                <img src={foodImage ? require('../../uploads/' + foodImage) : defaultImg} alt="food"/>
-                                            </div>
-
-                                            <div className="food_info">
-                                                <h5 className="food_title">{foodName} {foodType ? `-${foodType}` : ''}</h5>
-                                                <span>{restaurantName}, </span>
-                                                <span>Rs.{foodPrice}</span>
-                                                <button onClick={()=> null}>+</button>
-                                            </div>
-                                        </div>
-                                    )
-                                })): 'loading'}
+                            <div className='search'>
+                                <input type="search" placeholder="Search Food.." onChange={(e)=> searchFood(e.target.value)}/>
                             </div>
+
+                            <FoodList foods={filterfoods}/>                            
                         </div>
+
                         <div className='food_cart'>
                             <h4>Your Orders</h4>
                         </div>
-                    </div>
+                    </div>                
                 </div>
             </div>
         </>

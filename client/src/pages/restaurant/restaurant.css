@@ -14,19 +14,6 @@
 position: relative;
 }
 
-/* #additem_section::before {
-background: url(../../images/food.png) no-repeat;
-background-size: 472px;
-top: 0;
-right: 7%;
-left: auto;
-height: 100%;
-filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
-position: absolute;
-content: '';
-width: 404px;
-} */
-
 .card_list {
     display: flex;
     flex-flow: row wrap;
@@ -44,19 +31,6 @@ width: 404px;
     position: relative;
 }
 
-/* .card::before {
-    height: 50px;
-    width: 50px;
-    position: absolute;
-    content: '';
-    z-index: 1;
-    border-radius: 50%;
-    background: #fff url(../../images/meal.png);
-    background-size: contain;
-    left: 10px;
-    top: 10px;
-} */
-
 .card:nth-child(3n) {
     margin-right: 0;
 }
@@ -70,6 +44,9 @@ width: 404px;
 .card_img img {
     width: 100%;
     transition: all .3s ease-in-out;
+    object-fit: cover;
+    max-height: 150px;
+    height: 150px;
 }
 
 .card:hover img {
@@ -88,7 +65,7 @@ width: 404px;
     line-height: 20px;
 }
 
-.card a{
+.card a:hover{
     color: #fff;
 }
 
@@ -98,6 +75,7 @@ width: 404px;
     transition: all .3s ease-in-out;
     background: #f1f1f1;
     position: relative;
+    margin-top: auto;
 }
 
 .card_info p{

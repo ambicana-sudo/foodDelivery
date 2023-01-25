@@ -1,13 +1,22 @@
-import React from "react";
+import React,{useState, useEffect} from "react";
 import Logo from '../../images/meal.png'
 import './header.css'
 import Navigation from "./navigation";
 
 const Header = ()=>{
+    const [headerColor, setHeaderColor] = useState('')
+
+	const listenScrollEvent = () => {
+		window.scrollY > 10 ? setHeaderColor("rgba(255,132,101,.9)") : setHeaderColor("transparent")
+	}
+	// Similar to componentDidMount and componentDidUpdate:
+	useEffect(() => {
+		window.addEventListener("scroll", listenScrollEvent)
+	})
    
     return(
         <>
-            <header>
+            <header style={{ backgroundColor: headerColor }}>
                 <div className="container">
                     <div className="header_wrap">
                         <div className="logo">

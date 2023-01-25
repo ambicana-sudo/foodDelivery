@@ -52,7 +52,7 @@ const AddFood = (props) => {
 				body: JSON.stringify(values),
 			}
 		}
-		const response = await fetch('http://localhost:5000/food', requestOptions);
+		const response = await fetch('http://localhost:3000/food', requestOptions);
 		const data = await response.json();
 
 		if (data) {

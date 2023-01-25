@@ -22,7 +22,7 @@ const AuthorizedUsers = (props)=>{
 const UserRoute = ()=>{
     return(
         <Routes>
-            <Route path="/" element={<Restaurant />} />
+            <Route exact path="/" element={<Restaurant />} />
             <Route path="restaurant/:id" element={<RestaurantDetail />} />
         </Routes>
     )
@@ -31,7 +31,7 @@ const UserRoute = ()=>{
 const RiderRoute = ()=>{
     return(
         <Routes>
-            <Route path="/" element={<OrderDisplay />} />
+            <Route exact path="/" element={<OrderDisplay />} />
         </Routes>
     )
 }
@@ -39,9 +39,9 @@ const RiderRoute = ()=>{
 const AdminRoute = ()=>{
     return(                                                                                                 
         <Routes>
-            <Route path="/" element={<Admin />} />
-            <Route path="/add-restaurant" element={<RestaurantData />} />
-            <Route path="/add-food" element={<FoodData />} />
+            <Route exact path="/" element={<Admin />} />
+            {/* <Route path="/add-restaurant" element={<RestaurantData />} />
+            <Route path="/add-food" element={<FoodData />} /> */}
         </Routes>
     )
 }

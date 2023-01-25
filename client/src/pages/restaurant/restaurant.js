@@ -1,55 +1,43 @@
 import React, {useState, useEffect} from 'react'
-import Header from '../../component/header/header'
 import './restaurant.css'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import RestaurantList from './restaurantList'
+import Search from '../../component/search'
 
 const Restaurant = ()=>{
 	const [restaurants, setRestaurants] = useState([])
-
+	const [loading, setLoading] = useState(false)
+	const [key, setKey] = useState('')
+	
 	const fetchList = async() => {
-		const response = await fetch('http://localhost:5000/restaurant')
+		const response = await fetch(`http://localhost:3000/restaurant?name=${key}`)
 		const data = await response.json();
 		
 		if(data){
-			setRestaurants(data.restaurantList)
+			setRestaurants(data.restaurantData)
+			setLoading(true)
 		}
 	}
 	useEffect(()=>{
 		fetchList()
-  	},[])
-
-	const handleSearch = async(searchKey)=>{
-		const response = await fetch(`http://localhost:5000/restaurant?name=${searchKey}` )
-		const result = await response.json();
-		if(result){
-			console.log(result)
-			setRestaurants(result.restaurantList)
-		}
-	}
+  	},[key])
 
 	return(
 
 		<>
-			{/* <Header/> */}
 			<div className='top_section'>
-			<div className='form_section'>
+				<div className='form_section'>
 					<div className='text_block'>
 						<h1>Search <br /> Restaurant or Cuisine</h1>
 						<p>Order food from the widest range of restaurants...</p>
 					</div>
 
-					<div className='search transparent_bg'>
-						<input type="search" placeholder="Enter restaurant name or cuisine" onChange={(e)=> handleSearch(e.target.value)}/>
-						<button><i><FontAwesomeIcon icon={faSearch}/></i></button>
-					</div>
+					<Search {...{setKey}}/>
 				</div>
 			</div>
 			<div className='restro_section'>
 				<div className='container'>
 					<h2 className='section_title'>All Restaurants</h2>
-					<RestaurantList restaurants={restaurants}/>
+					<RestaurantList restaurants={restaurants} load={loading}/>
 				</div>
 			</div>
 		</>

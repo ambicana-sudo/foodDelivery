@@ -12,7 +12,7 @@ const RestaurantData = ()=>{
     const [selectedItem,setSelectedItem] = useState({})
     
     const fetchRestro = async()=>{
-        const response = await fetch('http://localhost:5000/restaurant')
+        const response = await fetch('http://localhost:3000/restaurant')
         const data = await response.json()
 
         if(data){
@@ -26,7 +26,7 @@ const RestaurantData = ()=>{
 
     const deleteRestro = async(id)=>{
         console.log(id)
-        const response = await fetch(`http://localhost:5000/restaurant/${id}`, {
+        const response = await fetch(`http://localhost:3000/restaurant/${id}`, {
             method: 'DELETE'
         })
         const data = await response.json()

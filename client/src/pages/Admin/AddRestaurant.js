@@ -5,11 +5,9 @@ import * as Yup from 'yup';
 import { message } from 'antd';
 import 'antd/dist/antd.min.css';
 import Userimage from '../../images/dummy.svg'
-import { setRestaurantList } from '../../reducerSlice/restaurantSlice';
 
 const AddRestaurant = (props) => {
 	const { name } = useSelector(state => state.users)
-	const dispatch = useDispatch()
 	const [restroImg, setRestroImg] = useState()
 	const [initialValues, setInitialValues] = useState({
 		name: '',
@@ -51,7 +49,7 @@ const AddRestaurant = (props) => {
 			};
 		}
 		
-		const response = await fetch('http://localhost:5000/restaurant', requestOptions);
+		const response = await fetch('http://localhost:3000/restaurant', requestOptions);
 		const data = await response.json();
 
 		if (data) {
