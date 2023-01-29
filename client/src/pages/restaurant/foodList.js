@@ -1,9 +1,12 @@
 import React from 'react'
 
 const FoodList = (props)=>{
+    const handleClick = (item)=>{
+        console.log(props)
+    }
     return(
         <>
-            {props.foods.length > 0 ? props.foods.map((food)=>{
+            {props.foods.length > 0 ? props.foods.map((food,id)=>{
                 const {foodName, restaurantName, foodPrice, foodType, foodImage, foodCategory} = food
                 return(
                     <>
@@ -17,7 +20,7 @@ const FoodList = (props)=>{
                                 <h5 className="food_title">{foodName} {foodType ? `-${foodType}` : ''}</h5>
                                 <span>{restaurantName}, </span>
                                 <span>Rs.{foodPrice}</span>
-                                <button onClick={()=> null}>+</button>
+                                <button onClick={(e)=> handleClick(id)}>+</button>
                             </div>
                         </div>
                     </>

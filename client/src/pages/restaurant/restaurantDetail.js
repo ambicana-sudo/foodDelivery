@@ -12,6 +12,7 @@ const RestaurantDetail = ()=>{
     const [foods, setFoods] = useState([])
     // const [searchKey, setSearchKey] = useState('')
 
+    const restroName = restaurants.name
     const params = useParams();
     const {id} = params;
 
@@ -26,8 +27,9 @@ const RestaurantDetail = ()=>{
         }
     }
     const fetchFood = async()=>{
-        const response = await fetch(`http://localhost:3000/food`);
+        const response = await fetch(`http://localhost:3000/food/${restroName}`);
         const data = await response.json();
+        console.log(data)
         if(data){
             setFoods(data.foodList)
         }else{
@@ -38,7 +40,7 @@ const RestaurantDetail = ()=>{
     useEffect(()=>{
         fetchDetails()
         fetchFood()
-    }, [id])
+    }, [id, restroName])
 
     const searchFood = (key)=>{
         if(key === ''){
@@ -51,9 +53,9 @@ const RestaurantDetail = ()=>{
         }
     }
 
-    const filterfoods = foods.filter((food)=>{
-        return restaurants.name === food.restaurantName
-    })
+    // const filterfoods = foods.filter((food)=>{
+    //     return restaurants.name === food.restaurantName
+    // })
 
     return(
         <>
@@ -86,7 +88,7 @@ const RestaurantDetail = ()=>{
                                 <input type="search" placeholder="Search Food.." onChange={(e)=> searchFood(e.target.value)}/>
                             </div>
 
-                            <FoodList foods={filterfoods}/>                            
+                            <FoodList foods={foods}/>                            
                         </div>
 
                         <div className='food_cart'>
