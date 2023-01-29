@@ -6,10 +6,16 @@ import Search from '../../component/search'
 const Restaurant = ()=>{
 	const [restaurants, setRestaurants] = useState([])
 	const [loading, setLoading] = useState(false)
-	const [key, setKey] = useState('')
+	// const [key, setKey] = useState('')
 	
-	const fetchList = async() => {
-		const response = await fetch(`http://localhost:3000/restaurant?name=${key}`)
+	const fetchList = async(key) => {
+		let response;
+		if(key){
+			response = await fetch(`http://localhost:3000/restaurant?name=${key}`)
+		}else{
+			response = await fetch(`http://localhost:3000/restaurant`)
+		}
+		
 		const data = await response.json();
 		
 		if(data){
@@ -19,7 +25,7 @@ const Restaurant = ()=>{
 	}
 	useEffect(()=>{
 		fetchList()
-  	},[key])
+  	},[])
 
 	return(
 
@@ -31,7 +37,7 @@ const Restaurant = ()=>{
 						<p>Order food from the widest range of restaurants...</p>
 					</div>
 
-					<Search {...{setKey}}/>
+					<Search fetchdata={fetchList}/>
 				</div>
 			</div>
 			<div className='restro_section'>
