@@ -30,9 +30,10 @@ router.post('/', upload, async(req, res)=>{
     }
 })
 
-router.get('/', async(req, res)=>{
+router.get('/:restaurant', async(req, res)=>{
     try{
-        const foodList = await Food.find()
+        const foodList = await Food.find({restaurantName: req.params.restaurant})
+        console.log(foodList)
         res.json({
             foodList: foodList
         })
