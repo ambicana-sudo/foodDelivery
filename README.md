@@ -1,5 +1,3 @@
-# foodDelivery
-
 # Food Delivery App
 
 ## Tech Stack
