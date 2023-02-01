@@ -21,7 +21,7 @@
   - [x] Registration
   - [x] MultiUser Login(user, admin, rider)
 - [ ] Services
-  - [ ] Search Product by Food/Restaurant
+  - [x] Search Product by Food/Restaurant
   - [ ] Pagination
   - [x] Add, Update, Delete Restaurant
   - [x] Add, Update, Delete Foods
