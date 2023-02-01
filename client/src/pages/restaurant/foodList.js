@@ -1,9 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { message } from 'antd';
+import {useDispatch} from 'react-redux'
+import { setOrdersList } from '../../reducerSlice/cartSlice';
 
 const FoodList = (props)=>{
-    const handleClick = (item)=>{
-        console.log(props)
+    const dispatch = useDispatch()
+    const addToCart = (selectedItem, id)=>{
+        props.foods[id].orderQuantity = 1
+        message.success('Added your order to cart')
+        
+        dispatch(setOrdersList(selectedItem))
     }
+    
     return(
         <>
             {props.foods.length > 0 ? props.foods.map((food,id)=>{
@@ -17,10 +25,10 @@ const FoodList = (props)=>{
                             </div>
 
                             <div className="food_info">
-                                <h5 className="food_title">{foodName} {foodType ? `-${foodType}` : ''}</h5>
+                                <h3 className="food_title">{foodName} {foodType ? `-${foodType}` : ''}</h3>
                                 <span>{restaurantName}, </span>
                                 <span>Rs.{foodPrice}</span>
-                                <button onClick={(e)=> handleClick(id)}>+</button>
+                                <button onClick={(e)=> addToCart(food, id)}>+</button>
                             </div>
                         </div>
                     </>

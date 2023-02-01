@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBowlRice, faLocationDot, faFontAwesome } from '@fortawesome/free-solid-svg-icons'
 import Rating from '@mui/material/Rating';
 import FoodList from './foodList';
+import FoodCart from '../../component/cart';
 
 const RestaurantDetail = ()=>{
     const [restaurants, setRestaurants] = useState([]);
@@ -29,7 +30,7 @@ const RestaurantDetail = ()=>{
     const fetchFood = async()=>{
         const response = await fetch(`http://localhost:3000/food/${restroName}`);
         const data = await response.json();
-        console.log(data)
+      
         if(data){
             setFoods(data.foodList)
         }else{
@@ -93,6 +94,7 @@ const RestaurantDetail = ()=>{
 
                         <div className='food_cart'>
                             <h4>Your Orders</h4>
+                            <FoodCart/>
                         </div>
                     </div>                
                 </div>

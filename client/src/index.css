@@ -713,6 +713,12 @@ div#cart {
   margin-right: 0;
   width: 25%;
 }
+
+.cart{
+  padding: 20px;
+  background: rgb(208 73 19 / 29%);
+}
+
 .cart_info {
   flex-grow: 2;
   background: rgb(208 73 19 / 29%);
@@ -730,6 +736,16 @@ div#cart {
   margin: 0 5px 0 0;
   background: #fff;
   cursor: pointer;
+}
+
+.qty span:first-child, .qty span:last-child{
+  height: 25px;
+  width: 25px;
+  background: rgb(207 69 14 / 30%);
+  border-radius: 50%;
+  text-align: center;
+  line-height: 25px;
+  padding: 0
 }
 
 .categories_list {
