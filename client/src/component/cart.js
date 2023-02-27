@@ -23,18 +23,23 @@ const FoodCart = () => {
     return (
         <div className='cart'>
             {ordersList.length > 0 ? ordersList.map((item, id) => {
-                let { foodPrice, foodName, orderQuantity } = item;
+                console.log(item.orderQuantity)
+                const { foodPrice, foodName, orderQuantity } = item;
+
                 return (
                     <div className="order_card" key={id}>
-                        <h3>{foodName}</h3>
-                        <span style={{ float: 'right' }}><strong>{foodPrice * orderQuantity}</strong></span>
-                        <div className="qty">
-                            <span onClick={() => decreaseQty(item)}>-</span>
-                            <span>{orderQuantity}</span>
-                            <span onClick={() => increaseQty(item)}>+</span>
-                        </div>
+                        <p>{foodName}</p>
 
-                        <button className="cancel" onClick={() => deleteCartItem(item)}><FontAwesomeIcon icon={faTrash} /></button>
+                        <div className='order-info'>
+                            <span style={{ float: 'right' }}>{foodPrice * orderQuantity}</span>
+                            <div className="qty">
+                                <span onClick={() => decreaseQty(item)}>-</span>
+                                <span>{orderQuantity}</span>
+                                <span onClick={() => increaseQty(item)}>+</span>
+                            </div>
+
+                            <button className="cancel" onClick={() => deleteCartItem(item)}><FontAwesomeIcon icon={faTrash} /></button>
+                        </div>
                     </div>
                 )
             }) : <h2>Your cart is empty</h2>}

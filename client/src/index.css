@@ -481,7 +481,7 @@ input[type="search"] {
 
 .order_card {
   background: rgb(255 255 255 / 40%);
-  padding: 15px;
+  padding: 5px 10px;
   /* color: #fff; */
   border-radius: 10px;
   position: relative;
@@ -496,6 +496,19 @@ input[type="search"] {
 .order_card button {
   padding: 2px 20px;
   font-size: 14px !important;
+  background: none;
+  color: red !important;
+}
+
+.order-info {
+  display: flex;
+  width: 100%;
+  gap: 30px;
+}
+
+.qty{
+  flex-grow: 1;
+  display: flex
 }
 
 .badge {
@@ -716,7 +729,7 @@ div#cart {
 
 .cart{
   padding: 20px;
-  background: rgb(208 73 19 / 29%);
+  background: rgb(208 73 19 / 15%);
 }
 
 .cart_info {
@@ -742,7 +755,7 @@ div#cart {
   height: 25px;
   width: 25px;
   background: rgb(207 69 14 / 30%);
-  border-radius: 50%;
+  /* border-radius: 50%; */
   text-align: center;
   line-height: 25px;
   padding: 0
@@ -757,5 +770,7 @@ div#cart {
   padding: 5px 0;
   border-bottom: 1px solid #ccc;
 }
+
+
 
 

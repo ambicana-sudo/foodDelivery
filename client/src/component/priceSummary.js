@@ -18,9 +18,9 @@ const PriceSummary = () => {
 
     return (
         <div className='total-price'>
-            <h3>Sub Total: <span>{subTotal}</span></h3>
-            <h3>Discount: <span>{subTotal > 1000 && discount}%</span></h3>
-            <h3>Total : <span>{subTotal - (discount / 100) * subTotal}</span></h3>
+            <p>Sub Total: <span>{subTotal}</span></p>
+            <p>Discount: <span>{subTotal > 1000 ? `${discount}%` : '0.00'}</span></p>
+            <p>Total : <span>{subTotal - (discount / 100) * subTotal}</span></p>
 
             <button>Proceed to Checkout</button>
         </div>
